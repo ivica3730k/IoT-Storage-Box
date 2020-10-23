@@ -20,9 +20,17 @@ class Data(db.Model):
     data = db.Column(db.Text())
 
     def collection_json(self):
+        """
+
+        :return:
+        """
         return "\"" + str(self.timestamp) + "\":" + self.data
 
     def standalone_json(self):
+        """
+
+        :return:
+        """
         return self.data
 
 

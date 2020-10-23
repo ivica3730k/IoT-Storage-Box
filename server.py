@@ -21,8 +21,14 @@ def put(apikey: str):
 
 
 @app.route('/<apikey>/get/')
-def get(apikey: str):
+def get_all(apikey: str):
     return Response(jsbeautifier.beautify(db.obtain_all_data(apikey)), mimetype="application/json")
+
+
+@app.route('/<apikey>/remove/')
+def remove(apikey: str):
+    db.remove_api_key(apikey)
+    return "OK"
 
 
 app.run(debug=True, use_reloader=True)
