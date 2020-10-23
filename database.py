@@ -19,6 +19,12 @@ class Data(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     data = db.Column(db.Text())
 
+    def collection_json(self):
+        return "\"" + str(self.timestamp) + "\":" + self.data
+
+    def standalone_json(self):
+        return self.data
+
 
 def _create_api_key(api_key: str) -> ApiKey:
     """
@@ -87,3 +93,20 @@ def write_data(api_key: str, data) -> None:
     db.session.add(key)
     db.session.add(newDataObject)
     db.session.commit()
+
+
+def obtain_all_data(api_key: str) -> str:
+    """
+
+    :param api_key:
+    :return:
+    """
+    out = "{"
+    if _api_key_exist(api_key):
+        key = _get_api_key(api_key)
+        data = []
+        for i in key.data.all():
+            data.append(i.collection_json())
+        out += ",".join(data)
+    out += "}"
+    return out
