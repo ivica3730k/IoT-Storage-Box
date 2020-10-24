@@ -27,7 +27,7 @@ Visting this url would return:
     }
 }
 ```
-### Deleting data from storage
+### Deleting data from Storage
 Visiting url below will erase all data in the Storage for specified api key:
 
 <http://storageurl/apikeygoeshere/remove/>
