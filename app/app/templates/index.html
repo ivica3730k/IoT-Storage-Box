@@ -35,7 +35,7 @@
         <h2 id="how-does-it-work">How does it work</h2>
         <p>You store the data using your own API key you specify (must be UUID4).
             Do not forget your api key and do not give it to someone else.</p>
-            Example of UUIDv4 Api Key which you can use: {{data.uuid4example}}
+          Example of UUIDv4 Api Key which you can use: <b>{{data.uuid4example}}</b>
         <h2 id="reading-writing-and-deleting-data">Reading, writing and deleting data</h2>
         <hr>
         <h3 id="writing-data-to-storage">Writing data to Storage</h3>
@@ -43,15 +43,15 @@
             get requests using url arguments (for esp8266 and GSM shields mostly).
             <br>
             You can name your parameters however you want.
-            Visting url below will save name ivica and surname matic into the Storage:</p>
+            Visiting url below will save name "ivica" and surname "matic" into the Storage:</p>
         <p>
-            <a href="http://{{data.domain}}/apikeygoeshere/put/?name=ivica&amp;surname=matic">
-                http://{{data.domain}}/apikeygoeshere/put/?name=ivica&amp;surname=matic</a>
+            <a href="http://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic">
+                http://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic</a>
         </p>
         <h3 id="obtaining-data-from-storage">Obtaining data from Storage</h3>
         <p>Visiting url below will give all data points in JSON format stored for provided apikey:</p>
         <p>
-            <a href="http://{{data.domain}}/apikeygoeshere/get/">http://{{data.domain}}/apikeygoeshere/get/</a>
+            <a href="http://{{data.domain}}/{{data.uuid4example}}/get/">http://{{data.domain}}/{{data.uuid4example}}/get/</a>
         </p>
         <p>Visting this url would return:</p>
         <pre><code class="lang-javascript">{
@@ -64,7 +64,7 @@
         <h3 id="deleting-data-from-storage">Deleting data from Storage</h3>
         <p>Visiting url below will erase all data in the Storage for specified api key:</p>
         <p>
-            <a href="http://{{data.domain}}/apikeygoeshere/remove/">http://{{data.domain}}/apikeygoeshere/remove/</a>
+            <a href="http://{{data.domain}}/{{data.uuid4example}}/remove/">http://{{data.domain}}/{{data.uuid4example}}/remove/</a>
         </p>
         <hr>
         <h2 id="contributing-to-the-project">Contributing to the project</h2>
@@ -76,7 +76,7 @@
         </p>
         <hr>
         <h2>Disclaimer</h2>
-        <p><b>There is notting preventing me or someone else from seeing your data!</b> Even if UUIDv4 is almost impossible to guess it can happen. 
+        <p><b>There is nothing preventing me or someone else from seeing your data!</b> Even if UUIDv4 is almost impossible to guess it can happen.
             And also, your data is saved in the readable text format. Do not put any data you would not want to share with someone else.
             I am taking no responsibility what so ever for you or your data.
         </p>
