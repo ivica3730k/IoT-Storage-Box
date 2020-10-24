@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Storage Box</title>
+</head>
+
+<body>
+    <style>
+        .centered {
+            margin: auto;
+            width: 55%;
+            padding: 10px;
+            text-align: justify;
+            text-justify: inter-word;
+            border: 1px solid;
+            box-shadow: 5px 10px #888888;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .centered {
+                width: 100%;
+            }
+        }
+    </style>
+    <div class="centered">
+        <div style="padding:5px;padding-top:0px;">
+        <h1 id="iot-storage-box">IoT-Storage-Box</h1>
+        <p>Simple IoT storage project, working inside Docker Container or standalone.
+            Saving data to sqlite3 database file, with no authentication what so ever.</p>
+        <hr>
+        <h2 id="how-does-it-work">How does it work</h2>
+        <p>You store the data using your own API key you specify (must be UUID4).
+            Do not forget your api key and do not give it to someone else.</p>
+            Example of UUIDv4 Api Key which you can use: {{data.uuid4example}}
+        <h2 id="reading-writing-and-deleting-data">Reading, writing and deleting data</h2>
+        <hr>
+        <h3 id="writing-data-to-storage">Writing data to Storage</h3>
+        <p>Currently, only supported way of writing data to the storage is trough
+            get requests using url arguments (for esp8266 and GSM shields mostly).
+            <br>
+            You can name your parameters however you want.
+            Visting url below will save name ivica and surname matic into the Storage:</p>
+        <p>
+            <a href="http://{{data.domain}}/apikeygoeshere/put/?name=ivica&amp;surname=matic">
+                http://{{data.domain}}/apikeygoeshere/put/?name=ivica&amp;surname=matic</a>
+        </p>
+        <h3 id="obtaining-data-from-storage">Obtaining data from Storage</h3>
+        <p>Visiting url below will give all data points in JSON format stored for provided apikey:</p>
+        <p>
+            <a href="http://{{data.domain}}/apikeygoeshere/get/">http://{{data.domain}}/apikeygoeshere/get/</a>
+        </p>
+        <p>Visting this url would return:</p>
+        <pre><code class="lang-javascript">{
+    <span class="hljs-attr">"2020-10-24 02:01:47.195710"</span>: {
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"ivica"</span>,
+        <span class="hljs-attr">"surname"</span>: <span class="hljs-string">"matic"</span>
+    }
+}
+</code></pre>
+        <h3 id="deleting-data-from-storage">Deleting data from Storage</h3>
+        <p>Visiting url below will erase all data in the Storage for specified api key:</p>
+        <p>
+            <a href="http://{{data.domain}}/apikeygoeshere/remove/">http://{{data.domain}}/apikeygoeshere/remove/</a>
+        </p>
+        <hr>
+        <h2 id="contributing-to-the-project">Contributing to the project</h2>
+        <p>Fell free to fork version of the code and create your own version and start a pull request.
+            This is work in progress. All information above might change in the future.
+            <br>
+            <br>
+            You can find source code at <a href="https://github.com/ivica3730k/IoT-Storage-Box">https://github.com/ivica3730k/IoT-Storage-Box</a>
+        </p>
+        <hr>
+        <h2>Disclaimer</h2>
+        <p><b>There is notting preventing me or someone else from seeing your data!</b> Even if UUIDv4 is almost impossible to guess it can happen. 
+            And also, your data is saved in the readable text format. Do not put any data you would not want to share with someone else.
+            I am taking no responsibility what so ever for you or your data.
+        </p>
+    </div>
+</div>
+</body>
+
+</html>

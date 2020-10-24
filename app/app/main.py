@@ -1,18 +1,21 @@
 import settings
-from flask import request
-from flask import Response
+from flask import Flask, render_template, request, Response
 import json
 import database as db
 import jsbeautifier
 import os
 import validators as v
+import uuid
 
 app = settings.app
 
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    data = {}
+    data["domain"] = settings.DOMAIN
+    data["uuid4example"] = str(uuid.uuid4())
+    return render_template('index.html', data=data)
 
 
 @app.route('/<apikey>/put/')
