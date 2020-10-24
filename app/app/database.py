@@ -78,9 +78,10 @@ def remove_api_key(api_key: str) -> None:
     :param api_key:
     :return:
     """
-    key = _get_api_key(api_key)
-    db.session.delete(key)
-    db.session.commit()
+    if _api_key_exist(api_key):
+        key = _get_api_key(api_key)
+        db.session.delete(key)
+        db.session.commit()
 
 
 def write_data(api_key: str, data) -> None:
@@ -118,3 +119,7 @@ def obtain_all_data(api_key: str) -> str:
         out += ",".join(data)
     out += "}"
     return out
+
+
+db.create_all()
+db.session.commit()
