@@ -7,6 +7,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 DOMAIN = "yourdomainorurl"
 try:  
-    DOMAIN = os.environ["DOMAIN"]
+    DOMAIN = os.environ["domain"]
 except KeyError: 
     pass

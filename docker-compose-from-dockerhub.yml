@@ -1,0 +1,12 @@
+version: "2"
+services: 
+  iotstoragebox:
+    image: ivicamatic/iot-storage-box
+    restart: unless-stopped
+    container_name: "iotstoragebox"
+    ports:
+      - '8080:80'
+    environment: 
+      - domain=iotstoragebox.ivica-matic.com
+    volumes:
+        - ./:/app/app/data
