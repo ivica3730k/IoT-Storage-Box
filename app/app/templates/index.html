@@ -22,7 +22,14 @@
 
         @media only screen and (max-width: 600px) {
             .centered {
+                margin: 0;
                 width: 100%;
+                padding: 0;
+                border: 0px solid;
+                box-shadow: 0px 0px #888888;
+                text-align: left;
+                text-justify: inter-word;
+
             }
         }
     </style>
@@ -45,13 +52,13 @@
             You can name your parameters however you want.
             Visiting url below will save name "ivica" and surname "matic" into the Storage:</p>
         <p>
-            <a href="http://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic">
-                http://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic</a>
+            <a href="https://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic">
+                https://{{data.domain}}/{{data.uuid4example}}/put/?name=ivica&amp;surname=matic</a>
         </p>
         <h3 id="obtaining-data-from-storage">Obtaining data from Storage</h3>
         <p>Visiting url below will give all data points in JSON format stored for provided apikey:</p>
         <p>
-            <a href="http://{{data.domain}}/{{data.uuid4example}}/get/">http://{{data.domain}}/{{data.uuid4example}}/get/</a>
+            <a href="https://{{data.domain}}/{{data.uuid4example}}/get/">https://{{data.domain}}/{{data.uuid4example}}/get/</a>
         </p>
         <p>Visting this url would return:</p>
         <pre><code class="lang-javascript">{
@@ -64,8 +71,10 @@
         <h3 id="deleting-data-from-storage">Deleting data from Storage</h3>
         <p>Visiting url below will erase all data in the Storage for specified api key:</p>
         <p>
-            <a href="http://{{data.domain}}/{{data.uuid4example}}/remove/">http://{{data.domain}}/{{data.uuid4example}}/remove/</a>
+            <a href="https://{{data.domain}}/{{data.uuid4example}}/remove/">https://{{data.domain}}/{{data.uuid4example}}/remove/</a>
         </p>
+        <h3>Note</h3>
+        <p>This service is set up to support both HTTP and HTTPS requests.</p>
         <hr>
         <h2 id="contributing-to-the-project">Contributing to the project</h2>
         <p>Fell free to fork version of the code and create your own version and start a pull request.
