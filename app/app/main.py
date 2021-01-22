@@ -1,11 +1,13 @@
-import settings
-from flask import Flask, render_template, request, Response
 import json
-import database as db
-import jsbeautifier
 import os
-import validators as v
 import uuid
+
+import jsbeautifier
+from flask import render_template, request, Response
+
+import database as db
+import settings
+import validators as v
 
 app = settings.app
 
@@ -40,6 +42,15 @@ def get_all(apikey: str):
 def remove(apikey: str):
     if v.is_valid_uuid4(apikey):
         db.remove_api_key(apikey)
+        return "OK"
+    else:
+        return "INVALID API KEY, MUST BE UUID4"
+
+
+@app.route('/<apikey>/remove/<id_to_delete>')
+def remove_single(apikey: str, id_to_delete: int):
+    if v.is_valid_uuid4(apikey):
+        db.remove_api_key_single(apikey,id_to_delete)
         return "OK"
     else:
         return "INVALID API KEY, MUST BE UUID4"
