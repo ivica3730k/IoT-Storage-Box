@@ -1,8 +1,11 @@
-from flask_sqlalchemy import SQLAlchemy
-import uuid
 import datetime
-import settings
 import json
+import uuid
+
+from flask_sqlalchemy import SQLAlchemy
+
+import settings
+
 db = SQLAlchemy(settings.app)
 
 
@@ -10,6 +13,9 @@ class ApiKey(db.Model):
     __tablename__ = 'apikey'
     id = db.Column(db.String(36), unique=True, nullable=False, primary_key=True, default=str(uuid.uuid4()))
     data = db.relationship('Data', backref='apikey', lazy='dynamic', cascade="all, delete-orphan")
+
+    def __str__(self):
+        return self.id
 
 
 class Data(db.Model):
@@ -86,6 +92,24 @@ def remove_api_key(api_key: str) -> None:
         key = _get_api_key(api_key)
         db.session.delete(key)
         db.session.commit()
+
+
+def remove_api_key_single(api_key: str, id_to_delete: int) -> None:
+    """
+
+    :param api_key:
+    :param id_to_delete:
+    :return:
+    """
+    if _api_key_exist(api_key):
+        key = _get_api_key(api_key)
+        key = str(key)
+        try:
+            result = Data.query.filter_by(key=key, id=id_to_delete).one()
+            db.session.delete(result)
+            db.session.commit()
+        except:
+            pass
 
 
 def write_data(api_key: str, data) -> None:
