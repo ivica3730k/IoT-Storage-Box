@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 import uuid
 import datetime
 import settings
-
+import json
 db = SQLAlchemy(settings.app)
 
 
@@ -24,7 +24,11 @@ class Data(db.Model):
 
         :return:
         """
-        return "\"" + str(self.timestamp) + "\":" + self.data
+        _data = {}
+        _data = json.loads(self.data)
+        _data["timestamp"] = str(self.timestamp)
+        _data = json.dumps(_data)
+        return "\"" + str(self.id) + "\":" + _data
 
     def standalone_json(self):
         """
